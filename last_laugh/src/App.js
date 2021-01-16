@@ -6,6 +6,8 @@ import Login from './components/Login/Login';
 import LinkToRedditAuth from './components/LinkToRedditAuth/LinkToRedditAuth';
 import { useCookies, Cookies, withCookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
+import { Container } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App(props) {
   const AUTH_COOKIE_NAME = 'last-laugh-auth-token';
@@ -22,23 +24,30 @@ function App(props) {
   const onNewAuthToken = (token) => {
     setAuthToken(token);
     setCookie(AUTH_COOKIE_NAME, token, { path: '/' });
-  } 
+  }
+
+  const clearAuthToken = () => onNewAuthToken(null);
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Switch>
-          <PrivateRoute path="/TopPosts" isLoggedIn={isLoggedIn} component={TopPosts} authToken={authToken} />
+      <Container>
+        <BrowserRouter>
+          <Switch>
+            <PrivateRoute path="/TopPosts" isLoggedIn={isLoggedIn} component={TopPosts} authToken={authToken} clearAuthToken={clearAuthToken} />
 
-          <Route path="/LinkToRedditAuth">
-            <LinkToRedditAuth />
-          </Route>
+            <Route path="/LinkToRedditAuth">
+              <LinkToRedditAuth />
+            </Route>
 
-          <Route path="/Login">
-            <Login setAuthToken={onNewAuthToken} />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+            <Route path="/Login">
+              <Login setAuthToken={onNewAuthToken} />
+            </Route>
+
+            {/* redirect to TopPosts by default */}
+            <Redirect to="/TopPosts" /> 
+          </Switch>
+        </BrowserRouter>
+      </Container>
     </div>
   );
 }

@@ -19,6 +19,7 @@ function Login(props) {
     history.push('/TopPosts');
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(setToken, []); // pass empty array to call the function only once
 
   return (

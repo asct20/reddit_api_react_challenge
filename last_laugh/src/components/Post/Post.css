@@ -1,0 +1,16 @@
+.Even-score-row {
+  background-color: #ffd8ab;
+}
+
+.Odd-score-row {
+  background-color: #c7caff;
+}
+
+a {
+  color: #444444;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #777777;
+}

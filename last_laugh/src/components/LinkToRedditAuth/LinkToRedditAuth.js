@@ -1,9 +1,9 @@
-import { Component } from 'react';
+import { Card, Button } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import * as RedditConfig from '../../config/RedditConfig';
 
-class LinkToRedditAuth extends Component {
-  getRedditLoginUrl() {
+function LinkToRedditAuth(props) {
+  const getRedditLoginUrl = () => {
     const state = uuidv4();
 
     let url = RedditConfig.REDDIT_AUTHORIZE_URL;
@@ -15,18 +15,22 @@ class LinkToRedditAuth extends Component {
     url += '&scope=read';
 
     return url;
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        <h1>Login to Reddit</h1>
-
-        <p>To login, please visit the link below:</p>
-        <a href={this.getRedditLoginUrl()}>Log in to Reddit</a>
-      </div>
-    );
-  }
+  return (
+    <Card>
+      <Card.Header as="h1">Reddit Login</Card.Header>
+      <Card.Body>
+        <p>To use this application, you need to login to Reddit and allow read access.</p>
+        <p>Please visit the link below. After you log in, you will be redirected back to this page.</p>
+        <Button
+          variant="outline-primary"
+          href={getRedditLoginUrl()}>
+            Log in
+        </Button>
+      </Card.Body>
+    </Card>
+  );
 }
 
 export default LinkToRedditAuth;
