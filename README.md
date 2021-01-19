@@ -4,7 +4,7 @@ This application fetches the top 20 posts from `/r/ProgrammerHumor` and displays
 
 ## How to use
 
-1. From the project's folder, run `npm start`.
+1. From the project's folder, run `npm install` then `npm start`.
 2. Open a browser and go to `http://localhost:3000`.
 3. Initially, you will need to log in to Reddit and give read access to the application. The website will prompt you to do so; follow the instructions.
 4. Once logged in, you will be redirected to the application and will be able to view the top posts.
